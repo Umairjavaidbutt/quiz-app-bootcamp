@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { QuestionCard } from './components/QuestionCard';
 import { fetchQuestions, Difficulty, Choice, Question } from './Api';
 import {GlobalStyle, Wrapper} from './App.styles';
+import firebase from './firebase';
 
 export type AnswerObject = {
   question: string,
@@ -65,6 +66,12 @@ function App() {
       setNumber(nextQuestion)
     }
   }
+  const messaging = firebase.messaging();
+  messaging.requestPermission().then(() => {
+    return messaging.getToken()
+  }).then((token) => {
+    console.log('token:', token)
+  })
 
   return (
     <>
