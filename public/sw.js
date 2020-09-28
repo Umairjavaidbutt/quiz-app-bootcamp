@@ -28,6 +28,7 @@ this.addEventListener('fetch', (event) => {
                 if (result) {
                     return result;
                 }
+                return fetch(event.request)
             })
         )
     }
